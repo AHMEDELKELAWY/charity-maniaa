@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { href: "/", label: "الرئيسية" },
@@ -21,12 +22,14 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-              <Heart className="w-5 h-5 md:w-6 md:h-6 text-primary-foreground" />
-            </div>
+            <img 
+              src={logo} 
+              alt="شعار الجمعية الخيرية بمعنيا" 
+              className="w-12 h-12 md:w-14 md:h-14 object-contain"
+            />
             <div>
-              <h1 className="text-lg md:text-xl font-bold text-foreground">الجمعية الخيرية</h1>
-              <p className="text-xs text-muted-foreground">بمعنيا</p>
+              <span className="text-lg md:text-xl font-bold text-foreground">الجمعية الخيرية بمعنيا</span>
+              <p className="text-xs text-muted-foreground">مشهرة برقم ٢٢٨٧ - ٢٠١٦</p>
             </div>
           </Link>
 

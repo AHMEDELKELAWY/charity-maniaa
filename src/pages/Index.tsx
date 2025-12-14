@@ -2,38 +2,70 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, BookOpen, Stethoscope, Utensils, Building } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Heart, Users, BookOpen, Stethoscope, Utensils, Building, CheckCircle, Phone } from "lucide-react";
 
 const projects = [
   {
     icon: Users,
     title: "كفالة الأيتام",
-    description: "رعاية شاملة للأيتام تشمل التعليم والصحة والغذاء",
+    description: "كفالة اليتيم تشمل التعليم، الرعاية الصحية، الغذاء، والدعم النفسي، وهي من أعظم أعمال الخير في الإسلام.",
   },
   {
     icon: Stethoscope,
     title: "علاج المرضى",
-    description: "توفير العلاج والأدوية للمرضى غير القادرين",
+    description: "توفير العلاج والأدوية والرعاية الطبية للمرضى غير القادرين على تحمل تكاليف العلاج.",
   },
   {
     icon: BookOpen,
     title: "تحفيظ القرآن",
-    description: "تعليم القرآن الكريم للأطفال والشباب",
+    description: "تعليم القرآن الكريم للأطفال والشباب ودعم حلقات التحفيظ والمعاهد القرآنية.",
   },
   {
     icon: Utensils,
     title: "إطعام الفقراء",
-    description: "توزيع وجبات غذائية على الأسر المحتاجة",
+    description: "توزيع وجبات غذائية وسلات غذائية شهرية على الأسر المحتاجة والفقراء.",
   },
   {
     icon: Building,
     title: "بناء المعاهد",
-    description: "المساهمة في بناء المعاهد الأزهرية",
+    description: "المساهمة في بناء وتجهيز المعاهد الأزهرية ودور العلم والمساجد.",
   },
   {
     icon: Heart,
     title: "صدقة جارية",
-    description: "مشاريع ذات أثر مستمر ودائم",
+    description: "مشاريع ذات أثر مستمر ودائم كحفر الآبار وبناء المساجد والمدارس.",
+  },
+];
+
+const whyDonate = [
+  "ضمان وصول التبرعات لمستحقيها",
+  "مشاريع خيرية مستدامة",
+  "إشراف وتنفيذ منظم",
+  "أجر مستمر وموثوق",
+];
+
+const faqs = [
+  {
+    question: "ما أفضل أنواع الصدقات؟",
+    answer: "أفضل الصدقات ما وافق نية المتبرع واحتياج الناس، ومنها كفالة اليتيم، علاج المريض، إطعام الجائع، والصدقة الجارية كبناء المساجد وحفر الآبار.",
+  },
+  {
+    question: "كيف أتأكد من وصول تبرعي؟",
+    answer: "نحرص على التواصل مع المتبرعين وإرسال تقارير دورية عن المشاريع، كما يمكنكم زيارة مقر الجمعية والاطلاع على سجلات التبرعات.",
+  },
+  {
+    question: "هل يمكنني تخصيص تبرعي لمشروع معين؟",
+    answer: "نعم، يمكنك اختيار المشروع الذي تريد التبرع له سواء كان كفالة أيتام أو علاج مرضى أو أي مشروع آخر.",
+  },
+  {
+    question: "ما هي طرق التبرع المتاحة؟",
+    answer: "يمكنك التبرع عبر فودافون كاش أو التحويل البنكي أو PayPal، أو زيارة مقر الجمعية للتبرع نقداً.",
   },
 ];
 
@@ -41,7 +73,7 @@ const stats = [
   { value: "500+", label: "يتيم مكفول" },
   { value: "1000+", label: "أسرة مستفيدة" },
   { value: "50+", label: "مشروع خيري" },
-  { value: "10+", label: "سنوات من العطاء" },
+  { value: "2016", label: "سنة التأسيس" },
 ];
 
 export default function Index() {
@@ -54,14 +86,13 @@ export default function Index() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
               <Heart className="w-4 h-4" />
-              <span>معاً نصنع الفرق</span>
+              <span>مشهرة برقم ٢٢٨٧ منذ عام ٢٠١٦</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              الجمعية الخيرية
-              <span className="text-primary"> بمعنيا</span>
+              تبرعك اليوم يصنع أثراً يدوم
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              تبرعاتكم تصل إلى الأيتام والمرضى والأسر المحتاجة من خلال مشاريع خيرية موثوقة ومستدامة
+              من خلال الجمعية الخيرية بمعنيا، تصل تبرعاتكم إلى الأيتام، المرضى، الأسر الفقيرة، وطلاب العلم في صورة مشاريع موثوقة ومستدامة.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <Button asChild size="lg" className="text-lg px-8 shadow-lg hover:shadow-xl transition-shadow">
@@ -89,13 +120,35 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Why Donate Section */}
+      <section className="py-16 md:py-24 bg-accent/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              لماذا التبرع عبر الجمعية الخيرية؟
+            </h2>
+            <p className="text-muted-foreground">
+              نحرص على تقديم أفضل الخدمات الخيرية بشفافية وأمانة
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {whyDonate.map((reason, index) => (
+              <div key={index} className="flex items-center gap-3 bg-card p-4 rounded-xl shadow-sm">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="font-medium text-foreground">{reason}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">مشاريعنا الخيرية</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">مشاريع التبرع المتاحة</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              نقدم مجموعة متنوعة من المشاريع الخيرية لدعم المحتاجين في مختلف المجالات
+              اختر المشروع المناسب لك وساهم في صنع الفرق في حياة المحتاجين
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -106,7 +159,7 @@ export default function Index() {
                     <project.icon className="w-7 h-7 text-accent-foreground group-hover:text-primary-foreground" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground">{project.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{project.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -119,22 +172,78 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-accent">
+      {/* How to Donate Section */}
+      <section className="py-16 md:py-24 bg-accent/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              كن سبباً في الخير
+              كيف تتبرع؟
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              تبرعك قد يكون شفاءً لمريض، تعليماً لطفل، سترًا لأسرة محتاجة، أو صدقة جارية تدوم
+              يمكنك اختيار المشروع المناسب لك والتواصل معنا للتبرع والمشاركة في الخير
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg px-8">
+                <Link to="/donate">صفحة التبرع</Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg" className="text-lg px-8">
+                <a href="tel:01096731819" className="flex items-center gap-2">
+                  <Phone className="w-5 h-5" />
+                  <span>01096731819</span>
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                الأسئلة الشائعة حول التبرع
+              </h2>
+              <p className="text-muted-foreground">
+                إجابات على أكثر الأسئلة شيوعاً حول التبرع والمشاريع الخيرية
+              </p>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-right text-lg font-medium">
+                    <h3>{faq.question}</h3>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              كن سبباً في الخير
+            </h2>
+            <p className="text-lg opacity-90 mb-8">
+              تبرعك قد يكون حياة لإنسان... شفاءً لمريض، تعليماً لطفل، سترًا لأسرة محتاجة، أو صدقة جارية تدوم
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" variant="secondary" className="text-lg px-8">
                 <Link to="/donate">تبرع الآن</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8">
-                <a href="tel:01096731819">اتصل بنا: 01096731819</a>
+              <Button asChild size="lg" variant="outline" className="text-lg px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                <a href="tel:01096731819" className="flex items-center gap-2">
+                  <Phone className="w-5 h-5" />
+                  <span>تواصل للتبرع: 01096731819</span>
+                </a>
               </Button>
             </div>
           </div>
