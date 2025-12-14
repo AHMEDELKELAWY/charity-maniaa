@@ -25,7 +25,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const contactInfo = [
   { icon: Phone, label: "الهاتف", value: "01096731819", href: "tel:01096731819" },
   { icon: MapPin, label: "العنوان", value: "معنيا - المنيا - مصر" },
-  { icon: Mail, label: "البريد", value: "info@charity-monya.org" },
+  { icon: Mail, label: "البريد", value: "elkelawy3@gmail.com", href: "mailto:elkelawy3@gmail.com" },
   { icon: Clock, label: "أوقات العمل", value: "يومياً من 9 ص - 5 م" },
 ];
 
@@ -41,7 +41,8 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("contact_messages").insert({
+      // Save to database
+      const { error: dbError } = await supabase.from("contact_messages").insert({
         name: data.name,
         phone: data.phone,
         email: data.email || null,
@@ -49,7 +50,23 @@ export default function Contact() {
         message: data.message,
       });
 
-      if (error) throw error;
+      if (dbError) throw dbError;
+
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: data.name,
+          phone: data.phone,
+          email: data.email || null,
+          subject: data.subject,
+          message: data.message,
+        },
+      });
+
+      if (emailError) {
+        console.error("Email error:", emailError);
+        // Don't throw - message was saved, just email failed
+      }
 
       setIsSuccess(true);
       reset();
@@ -58,6 +75,7 @@ export default function Contact() {
         description: "سنتواصل معكم في أقرب وقت",
       });
     } catch (error) {
+      console.error("Contact form error:", error);
       toast({
         title: "حدث خطأ",
         description: "يرجى المحاولة مرة أخرى",
