@@ -47,11 +47,11 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span className="opacity-80">معنيا - المنيا - مصر</span>
+                <span className="opacity-80">ايتاي البارود - البحيرة - مصر</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="opacity-80">info@charity-monya.org</span>
+                <a href="mailto:elkelawy3@gmail.com" className="opacity-80 hover:opacity-100 transition-opacity">elkelawy3@gmail.com</a>
               </li>
             </ul>
           </div>
