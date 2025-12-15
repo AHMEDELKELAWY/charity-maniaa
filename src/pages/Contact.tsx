@@ -25,7 +25,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const contactInfo = [
   { icon: Phone, label: "الهاتف", value: "01096731819", href: "tel:01096731819" },
-  { icon: MapPin, label: "العنوان", value: "معنيا - المنيا - مصر" },
+  { icon: MapPin, label: "العنوان", value: "ايتاي البارود - البحيرة - مصر" },
   { icon: Mail, label: "البريد", value: "elkelawy3@gmail.com", href: "mailto:elkelawy3@gmail.com" },
   { icon: Clock, label: "أوقات العمل", value: "يومياً من 9 ص - 5 م" },
 ];
