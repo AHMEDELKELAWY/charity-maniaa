@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Phone, MapPin, Mail, Clock, Send, Check } from "lucide-react";
+import LocationMap from "@/components/LocationMap";
 
 const contactSchema = z.object({
   name: z.string().min(3, "الاسم يجب أن يكون 3 أحرف على الأقل"),
@@ -220,6 +221,14 @@ export default function Contact() {
               </Card>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="pb-16 md:pb-24">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-foreground mb-6 text-center">موقعنا على الخريطة</h2>
+          <LocationMap className="h-[400px] md:h-[500px]" />
         </div>
       </section>
     </Layout>
